@@ -2,13 +2,13 @@
 * Build a Docker Image with Maven: `mvn spring-boot:build-image`
 * Run Docker Compose: `docker-compose up`
 
-##ER model
+## ER model
 ![](img/ER%20Model.png)
 
-##Class Diagram
+## Class Diagram
 ![](img/Class%20Diagram.png)
 
-##API Document
+## API Document
 http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
 
 ### Default User
