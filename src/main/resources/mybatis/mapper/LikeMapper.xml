@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="io.kuoche.post.text.periphery.data.mapper.LikeMapper">
+    <resultMap id="result" type="io.kuoche.post.text.periphery.data.model.LikeDo">
+        <id column="user_id" property="userId" />
+        <id column="text_id" property="textId" />
+    </resultMap>
+    <insert id="save" parameterType="io.kuoche.post.text.periphery.data.model.LikeDo">
+        INSERT INTO `like` (user_id, text_id)
+        SELECT #{userId}, text_id FROM text
+        WHERE text_id = #{textId};
+    </insert>
+    <select id="findAllByTextId" resultMap="result">
+        SELECT * FROM `like`
+        WHERE text_id = #{textId};
+    </select>
+    <delete id="delete" parameterType="io.kuoche.post.text.periphery.data.model.LikeDo">
+        DELETE FROM `like`
+        WHERE user_id = #{userId} AND text_id = #{textId}
+    </delete>
+</mapper>

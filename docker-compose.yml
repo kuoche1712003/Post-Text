@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  webapp:
+    image: post-text:0.0.1-SNAPSHOT
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      DB_URL: "jdbc:mysql://db:3306/post_text"
+      DB_USERNAME: "root"
+      DB_PASSWORD: "test@123"
+      spring.datasource.initialization-mode: "always"
+  db:
+    image: mysql:5.7.36
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "test@123"
+      MYSQL_DATABASE: "post_text"
+    ports:
+      - "3306:3306"

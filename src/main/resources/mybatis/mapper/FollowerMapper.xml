@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="io.kuoche.post.text.periphery.data.mapper.FollowerMapper">
+    <resultMap id="result" type="io.kuoche.post.text.periphery.data.model.FollowerDo">
+        <id column="follower_id" property="followerId" />
+        <id column="user_id" property="userId" />
+    </resultMap>
+    <insert id="save" parameterType="io.kuoche.post.text.periphery.data.model.FollowerDo">
+        INSERT INTO follower (follower_id, user_id)
+        SELECT #{followerId}, user_id FROM user
+        WHERE user_id = #{userId};
+    </insert>
+    <select id="findAllByFollowerId" resultMap="result">
+        SELECT * FROM follower
+        WHERE follower_id = #{followerId}
+    </select>
+    <delete id="delete" parameterType="io.kuoche.post.text.periphery.data.model.FollowerDo">
+        DELETE FROM follower
+        WHERE follower_id = #{followerId} AND user_id = #{userId}
+    </delete>
+</mapper>

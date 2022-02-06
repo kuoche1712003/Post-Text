@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="io.kuoche.post.text.periphery.data.mapper.TextMapper">
+    <resultMap id="result" type="io.kuoche.post.text.periphery.data.model.TextDo">
+        <id column="text_id" property="textId" />
+        <result column="user_id" property="userId" />
+        <result column="content" property="content" />
+        <result column="post_time" property="postTime" />
+    </resultMap>
+    <insert id="save" parameterType="io.kuoche.post.text.periphery.data.model.TextDo"
+        useGeneratedKeys="true" keyProperty="textId">
+        INSERT INTO text (user_id, content, post_time)
+        VALUES (#{userId}, #{content}, #{postTime});
+    </insert>
+    <update id="update" parameterType="io.kuoche.post.text.periphery.data.model.TextDo">
+        UPDATE text
+        SET user_id = #{user_id}, content = #{content}, post_time = #{postTime}
+        WHERE text_id = #{textId};
+    </update>
+    <select id="findByTextId" resultMap="result">
+        SELECT * FROM text
+        WHERE text_id = #{textId}
+    </select>
+    <select id="findAllByUserId" resultMap="result">
+        SELECT * FROM text
+        WHERE user_id = #{userId}
+    </select>
+    <delete id="delete">
+        DELETE FROM text
+        WHERE text_id = #{textId}
+    </delete>
+</mapper>
